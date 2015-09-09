@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 public class FamilyTree {
 	
@@ -17,20 +18,27 @@ public class FamilyTree {
 		
 	}
 	
-	public String getParent(position<string> person){
-		
+	public String getParent(Position<String> person){
+		return tree.parent(person).getElement();
 	}
 	
 	public String getGrandparent(Position<String> person){
-		
-		
+		return tree.parent(tree.parent(person)).getElement();
 	}
 	
 	public List<String> getChildren(Position<String> person){
-		
+		List<String> kids = new ArrayList<>();
+		for(Position<String> kid : tree.children(person))
+			kids.add(kid.getElement());
+		return kids;
 	}
 	
 	public List<String> getGrandChildren(Position<String> person){
-		
+		List<String> gkids = new ArrayList<>();
+		for(Position<String> kid : tree.children(person)) {
+			for(Position<String> gkid : tree.children(kid))
+				gkids.add(gkid.getElement());
+		}
+		return gkids;
 	}
 }
