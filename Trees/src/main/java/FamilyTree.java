@@ -19,10 +19,14 @@ public class FamilyTree {
 	}
 	
 	public String getParent(Position<String> person){
+		if(tree.parent(person) == null)
+			return null;
 		return tree.parent(person).getElement();
 	}
 	
 	public String getGrandparent(Position<String> person){
+		if(tree.parent(person) == null || tree.parent(tree.parent(person)) == null)
+			return null;
 		return tree.parent(tree.parent(person)).getElement();
 	}
 	
